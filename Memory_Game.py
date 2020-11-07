@@ -50,13 +50,25 @@ def letters_board(board, random_letters):
 
 
 
-def user_input():
+def user_input(row, column):
+    
+    # while True:
+    #     columns = input("Enter column: ").upper()
+    #     columns = ord(columns) - 65
+    #     if columns < column + 1:
+    #         break
+
+    # while True:
+    #     rows = int(input("Enter row: "))
+    #     if rows <= row:
+    #         break
+
     while True:
         coordinates = input("Please provide coordinates, eg. A2 ").upper()
         if len(coordinates) == 2 or len(coordinates) == 3:
             break
         else:
-            print("Wrond input, please provide proper coordinates!")
+            print("Wrong input, please provide proper coordinates!")
 
     columns = ord(coordinates[0]) - 65
     if len(coordinates) == 2:
@@ -67,12 +79,12 @@ def user_input():
     return (int(rows)-1), int(columns)
 
 
-def printing_user_input(user_board, computer_board):
+def printing_user_input(user_board, computer_board, row, column):
     temporary_board = deepcopy(user_board)
-    user_cord1 = user_input()
+    user_cord1 = user_input(row, column)
     temporary_board[user_cord1[0]][user_cord1[1]] = computer_board[user_cord1[0]][user_cord1[1]]
     print_board(temporary_board)
-    user_cord = user_input()
+    user_cord = user_input(row, column)
     temporary_board[user_cord[0]][user_cord[1]] = computer_board[user_cord[0]][user_cord[1]]
     print_board(temporary_board)
     if temporary_board[user_cord1[0]][user_cord1[1]] == temporary_board[user_cord[0]][user_cord[1]]:
@@ -80,18 +92,33 @@ def printing_user_input(user_board, computer_board):
     return user_board
     
 
-def comparing_letters(user_input,letters_board):
-    pass
-
-
 def main():
-    user_board = init_board()
-    computer_board = letters_board(init_board(), random_letters())
-    print_board(computer_board)
+    row, column = menu()
+    user_board = init_board(row, column)
+    computer_board = letters_board(init_board(), random_letters(row, column))
     print_board(user_board)
     while computer_board != user_board:
-        user_board = printing_user_input(user_board, computer_board)
+        user_board = printing_user_input(user_board, computer_board, row, column)
         print_board(user_board)
+
+    print('Well done!')
+
+def menu():
+    while True:
+        level = input("""Please enter level of difficulty:
+        1 - Easy
+        2 - Medium
+        3 - Hard
+        """)
+        if level == '1':
+            return 5,4
+        if level == '2':
+            return 5,6
+        if level == '3':
+            return 5,10
+        else: 
+            print("Wrong input")
+
 
 main()
 
