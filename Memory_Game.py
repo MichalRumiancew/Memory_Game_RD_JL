@@ -38,13 +38,12 @@ def random_letters(rows = 3, columns=4):
 def letters_board(board, random_letters):
     n = 0 
     m = 0
-    for i in board:
+    for i in board[0]:
         i[m] = random_letters[n]
         n += 1
         m += 1
-        if m > len(i):
-            m = 0 
-            
+        
+
     return board
 
 print_board(letters_board(init_board(), random_letters()))
