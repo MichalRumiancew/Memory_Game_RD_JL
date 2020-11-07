@@ -48,3 +48,38 @@ def letters_board(board, random_letters):
     return board
 
 print_board(letters_board(init_board(10,5), random_letters(10,5)))
+
+
+def user_input():
+    while True:
+        coordinates = input("Please provide coordinates, eg. A2 ").upper()
+        if len(coordinates) == 2 or len(coordinates) == 3:
+            break
+        else:
+            print("Wrond input, please provide proper coordinates!")
+
+    columns = ord(coordinates[0]) - 65
+    if len(coordinates) == 2:
+        rows = coordinates[1]
+    else:
+        rows = int(coordinates[1]+coordinates[2])
+
+    return rows, columns
+
+
+def printing_user_input(user_input, board, letters_board):
+    
+
+
+
+
+def comparing_letters(user_input,letters_board):
+    pass
+
+def main():
+    os.system("clear||cls")
+    print_board(init_board())
+    user_input()
+
+main()
+
