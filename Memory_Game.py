@@ -36,15 +36,15 @@ def random_letters(rows = 3, columns=4):
 
 
 def letters_board(board, random_letters):
-    n = 0 
-    m = 0
+    n = 0
     for i in board:
-        i[m] = random_letters[n]
-        n += 1
-        m += 1
-        if m > len(i):
-            m = 0 
+        for m in range(len(board[0])):
+            i[m] = random_letters[n]
+            n += 1
+            m += 1
+            if m > len(i):
+                m = 0 
             
     return board
 
-print_board(letters_board(init_board(), random_letters()))
+print_board(letters_board(init_board(10,5), random_letters(10,5)))
