@@ -1,8 +1,8 @@
 import string
 import os
-import rando
+import random
 
-def init_board(rows=5, columns=5):
+def init_board(rows=3, columns=4):
 
     board = []
     for column in range(rows):
@@ -21,16 +21,30 @@ def print_board(board):
         print(f'{n:<2} {" ".join(row)}')
         n += 1
 
-        
-print_board(init_board(10,5))
+    
+def random_letters(rows = 3, columns=4):
+    lower_case_abc = list(string.ascii_lowercase)
+    abc_list = []
+    for i in range((rows*columns)//2):
+        abc_list.append(lower_case_abc[i]*2)
+
+    abc_str = ''.join(abc_list)
+    abc_list_2 = list(abc_str)
+    random.shuffle(abc_list_2)
+
+    return abc_list_2
 
 
-def random_letters(row, col):
-    for i in range(row*col)
-    for i in range(len(board)):
-        random_tab = []
-        for i in range(len(board[0])):
-            random_tab.append()
+def letters_board(board, random_letters):
+    n = 0 
+    m = 0
+    for i in board:
+        i[m] = random_letters[n]
+        n += 1
+        m += 1
+        if m > len(i):
+            m = 0 
+            
+    return board
 
-
-
+print_board(letters_board(init_board(), random_letters()))
