@@ -69,10 +69,15 @@ def user_input():
 
 def printing_user_input(user_board, computer_board):
     temporary_board = deepcopy(user_board)
-    for i in range(2):
-        user_cord = user_input()
-        temporary_board[user_cord[0]][user_cord[1]] = computer_board[user_cord[0]][user_cord[1]]
-        print_board(temporary_board)
+    user_cord1 = user_input()
+    temporary_board[user_cord1[0]][user_cord1[1]] = computer_board[user_cord1[0]][user_cord1[1]]
+    print_board(temporary_board)
+    user_cord = user_input()
+    temporary_board[user_cord[0]][user_cord[1]] = computer_board[user_cord[0]][user_cord[1]]
+    print_board(temporary_board)
+    if temporary_board[user_cord1[0]][user_cord1[1]] == temporary_board[user_cord[0]][user_cord[1]]:
+        user_board = temporary_board
+    return user_board
     
 
 def comparing_letters(user_input,letters_board):
@@ -82,9 +87,11 @@ def comparing_letters(user_input,letters_board):
 def main():
     user_board = init_board()
     computer_board = letters_board(init_board(), random_letters())
+    print_board(computer_board)
     print_board(user_board)
-    printing_user_input(user_board, computer_board)
-    print_board(user_board)
+    while computer_board != user_board:
+        user_board = printing_user_input(user_board, computer_board)
+        print_board(user_board)
 
 main()
 
