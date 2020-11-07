@@ -95,7 +95,7 @@ def printing_user_input(user_board, computer_board, row, column):
 def main():
     row, column = menu()
     user_board = init_board(row, column)
-    computer_board = letters_board(init_board(), random_letters(row, column))
+    computer_board = letters_board(init_board(row, column), random_letters(row, column))
     print_board(user_board)
     while computer_board != user_board:
         user_board = printing_user_input(user_board, computer_board, row, column)
